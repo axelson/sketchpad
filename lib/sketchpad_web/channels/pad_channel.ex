@@ -8,6 +8,7 @@ defmodule SketchpadWeb.PadChannel do
       user_id: user_id,
       stroke: stroke
     }
+
     SketchpadWeb.Endpoint.broadcast_from!(from, topic(pad_id), "stroke", payload)
   end
 
@@ -24,5 +25,23 @@ defmodule SketchpadWeb.PadChannel do
     broadcast_stroke_from(self(), pad_id, user_id, data)
 
     {:reply, :ok, socket}
+  end
+
+  def handle_in("clear", _, socket) do
+    broadcast_clear(socket.assigns.pad_id)
+    {:reply, :ok, socket}
+  end
+
+  def handle_in("new_message", %{"body" => body}, socket) do
+    broadcast!(socket, "new_message", %{
+      user_id: socket.assigns.user_id,
+      body: body
+    })
+  end
+
+  def broadcast_clear(pad_id) do
+    pad_id
+    |> topic()
+    |> SketchpadWeb.Endpoint.broadcast!("clear", %{})
   end
 end
