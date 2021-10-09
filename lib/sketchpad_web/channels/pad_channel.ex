@@ -37,6 +37,7 @@ defmodule SketchpadWeb.PadChannel do
       user_id: socket.assigns.user_id,
       body: body
     })
+    {:reply, :ok, socket}
   end
 
   def broadcast_clear(pad_id) do

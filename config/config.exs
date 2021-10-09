@@ -15,8 +15,7 @@ config :sketchpad, SketchpadWeb.Endpoint,
   secret_key_base: "BCqHloAfzORpn/TX90PB9GULWVRZpjwegD4U8T1on/RUmEYTjkVGLC2YKFhkhLiS",
   render_errors: [view: SketchpadWeb.ErrorView, accepts: ~w(html json)],
   check_origin: false,
-  pubsub: [name: Sketchpad.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Sketchpad.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -31,14 +31,15 @@ defmodule Sketchpad.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, github: "phoenixframework/phoenix", override: true},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.5.9"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 3.2"},
-      {:phoenix_html, "~> 2.12", override: true},
+      {:phoenix_html, "~> 3.0", override: true},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:jason, "~> 1.0"},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 2.1"},
+      {:cowboy, "~> 2.0"},
       {:briefly, "~> 0.3"}
     ]
   end

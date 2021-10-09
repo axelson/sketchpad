@@ -64,7 +64,13 @@ let App = {
     this.msgInput = document.getElementById("message-input")
     this.msgContainer = document.getElementById("messages")
 
-    this.msgInput = addEventListener("keypress", e => {
+    this.padChannel.on("new_message", ({user_id, body}) => {
+      this.msgContainer.innerHTML +=
+        `<b>${sanitize(user_id)}</b>: ${sanitize(body)}<br/>`
+      this.msgContainer.scrollTop = this.msgContainer.scrollHeight
+    })
+
+    addEventListener("keypress", e => {
       if(e.keyCode !== 13) return
 
       let body = this.msgInput.value
@@ -83,12 +89,6 @@ let App = {
         .receive("ok", onOk)
         .receive("error", onError)
         .receive("timeout", onError)
-
-      this.padChannel.on("new_message", ({user_id, body}) => {
-        this.msgContainer.innerHtml +=
-          `<br/><b>${santize(user_id)}</b>: ${santize(body)}`
-        this.msgContainer.scrollTop = this.msgContainer.scrollHeight
-      })
     })
   },
 }
