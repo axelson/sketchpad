@@ -33,7 +33,6 @@ defmodule Sketchpad.Mixfile do
     [
       {:phoenix, "~> 1.5.9"},
       {:phoenix_pubsub, "~> 2.0"},
-      {:phoenix_ecto, "~> 3.2"},
       {:phoenix_html, "~> 3.0", override: true},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:jason, "~> 1.0"},
