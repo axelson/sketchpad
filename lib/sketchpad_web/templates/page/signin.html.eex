@@ -2,5 +2,3 @@
   <%= text_input f, :username, placeholder: "Username...", id: "username-input" %>
   <%= submit "Sketch" %>
 <% end %>
-
-<div id="jason-login-btn">Sketch as Jason</div>

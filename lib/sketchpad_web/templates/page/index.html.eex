@@ -26,13 +26,13 @@
       </div>
     </div>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Users</h3>
-      </div>
-      <div id="users" class="panel-body">
-      </div>
-    </div>
+    <!-- <div class="panel panel-default">
+         <div class="panel-heading">
+         <h3 class="panel-title">Users</h3>
+         </div>
+         <div id="users" class="panel-body">
+         </div>
+         </div> -->
 
   </div>
 </div>
