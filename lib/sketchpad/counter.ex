@@ -42,7 +42,7 @@ defmodule Sketchpad.Counter do
 
   def handle_in(:tick, count) do
     count = count + 1
-    if (count > 5), do: raise "boom"
+    if count > 5, do: raise("boom")
     IO.inspect(count, label: "count")
   end
 end

@@ -4,7 +4,6 @@ defmodule SketchpadWeb.PadChannelTest do
   alias SketchpadWeb.UserSocket
 
   describe "connecting and joining" do
-
     test "invalid tokens deny connection" do
       assert :error = connect(UserSocket, %{"token" => "invalid"})
     end
@@ -40,7 +39,7 @@ defmodule SketchpadWeb.PadChannelTest do
     end
 
     test "pushing clear event broadcasts to all peers", %{socket: socket} do
-      ref = push socket, "clear", %{}
+      ref = push(socket, "clear", %{})
       assert_reply ref, :ok
 
       assert_broadcast "clear", %{}

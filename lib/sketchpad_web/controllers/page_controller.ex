@@ -3,7 +3,6 @@ defmodule SketchpadWeb.PageController do
 
   @user_salt "user token"
 
-
   plug :require_user when action not in [:signin]
 
   def index(conn, _params) do
@@ -23,9 +22,11 @@ defmodule SketchpadWeb.PageController do
       |> assign(:user_id, user)
       |> assign(:user_token, Phoenix.Token.sign(conn, @user_salt, user))
     else
+      form = Phoenix.Component.to_form(%{}, as: :user)
+
       conn
       |> put_flash(:error, "Please sign-in!")
-      |> render("signin.html")
+      |> render("signin.html", form: form)
       |> halt()
     end
   end

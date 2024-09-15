@@ -1,20 +1,33 @@
 defmodule Sketchpad.Application do
+  # See https://hexdocs.pm/elixir/Application.html
+  # for more information on OTP Applications
+  @moduledoc false
+
   use Application
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
+  @impl true
   def start(_type, _args) do
-    import Supervisor.Spec
-
-    # Define workers and child supervisors to be supervised
     children = [
+      SketchpadWeb.Telemetry,
+      {DNSCluster, query: Application.get_env(:sketchpad, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Sketchpad.PubSub},
-      SketchpadWeb.Endpoint,
+      # Start a worker by calling: Sketchpad.Worker.start_link(arg)
+      # {Sketchpad.Worker, arg},
+      # Start to serve requests, typically the last entry
+      SketchpadWeb.Endpoint
     ]
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Sketchpad.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  # Tell Phoenix to update the endpoint configuration
+  # whenever the application is updated.
+  @impl true
+  def config_change(changed, _new, removed) do
+    SketchpadWeb.Endpoint.config_change(changed, removed)
+    :ok
   end
 end

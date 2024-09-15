@@ -1,4 +1,3 @@
 defmodule SketchpadWeb.PageView do
-  use SketchpadWeb, :view
-
+  use SketchpadWeb, :live_view
 end

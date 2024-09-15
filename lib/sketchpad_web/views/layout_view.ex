@@ -1,3 +1,3 @@
 defmodule SketchpadWeb.LayoutView do
-  use SketchpadWeb, :view
+  use SketchpadWeb, :live_view
 end
